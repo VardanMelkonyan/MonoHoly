@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 class JustButton extends StatelessWidget {
   final String title;
+  final Text text;
   final Color color;
   final Function onPressed;
 
-  const JustButton({this.title, this.color, this.onPressed});
+  const JustButton({this.title, this.color, this.onPressed, this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +17,12 @@ class JustButton extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
         color: color,
         child: Center(
-          child: Text(
-            title,
-            style: TextStyle(color: Colors.white, fontSize: 18),
-          ),
+          child: text == null
+              ? Text(
+                  title,
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                )
+              : text,
         ),
         onPressed: onPressed ??
             () {
