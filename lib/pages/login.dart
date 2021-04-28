@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:monoholy/pages/rules.dart';
 import 'package:monoholy/widgets/just_button.dart';
-import 'create_a_party.dart';
-import 'join_to_party.dart';
+import 'name.dart';
+import 'enter_the_game.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key key}) : super(key: key);
@@ -26,29 +27,19 @@ class LoginScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'MonoHoly',
+                    'Monopoly',
                     style: TextStyle(
                       color: Color(0xFFE089FF),
                       fontSize: 60,
                       fontFamily: 'FredokaOne',
                     ),
                   ),
-                  Spacer(),
+                  Spacer(flex: 1),
                   Column(
                     children: [
-                      JustButton(
-                        title: "Create a Party",
-                        color: Color(0xFF61D15F),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => CreatAParty()));
-                        },
-                      ),
                       SizedBox(height: 24),
                       JustButton(
-                        title: "Join to Party",
+                        title: "Join",
                         color: Color(0xFF1C73E0),
                         onPressed: () {
                           Navigator.push(
@@ -59,13 +50,21 @@ class LoginScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 24),
                       JustButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => RulesScreen()));
+                        },
                         title: "Rules",
                         color: Color(0xFFD93A73),
                       ),
                       SizedBox(height: 24),
                     ],
                   ),
-                  Spacer(),
+                  Spacer(
+                    flex: 2,
+                  ),
                 ],
               ),
             ),

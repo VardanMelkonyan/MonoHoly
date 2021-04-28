@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:monoholy/pages/name.dart';
 
-class CreatAParty extends StatefulWidget {
-  CreatAParty({Key key}) : super(key: key);
+class JoinToParty extends StatefulWidget {
+  JoinToParty({Key key}) : super(key: key);
 
   @override
-  _CreatAPartyState createState() => _CreatAPartyState();
+  _JoinToPartyState createState() => _JoinToPartyState();
 }
 
-class _CreatAPartyState extends State<CreatAParty> {
+class _JoinToPartyState extends State<JoinToParty> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +38,11 @@ class _CreatAPartyState extends State<CreatAParty> {
                   child: Column(
                 children: [
                   Spacer(),
-                  Text("Type your name:",
+                  SizedBox(
+                    width: 256,
+                    child: Image.asset("images/door_1.png"),
+                  ),
+                  Text("Enter The Game Code",
                       style: TextStyle(
                           color: Color(0xaaffffff),
                           fontSize: 24,
@@ -45,6 +50,14 @@ class _CreatAPartyState extends State<CreatAParty> {
                   SizedBox(
                     width: 256,
                     child: TextField(
+                      textInputAction: TextInputAction.go,
+                      onSubmitted: (code) {
+                        //TODO: Send request to server in order to connect
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Name()));
+                      },
+                      keyboardType: TextInputType.number,
+                      maxLength: 4,
                       style: TextStyle(
                         color: Color(0xffffffff),
                         fontFamily: 'FredokaOne',
@@ -52,7 +65,7 @@ class _CreatAPartyState extends State<CreatAParty> {
                       ),
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
-                          hintText: "name",
+                          hintText: "1234",
                           hintStyle: TextStyle(
                               color: Color(0x99ffffff),
                               fontFamily: 'FredokaOne'),
@@ -71,7 +84,9 @@ class _CreatAPartyState extends State<CreatAParty> {
                           )),
                     ),
                   ),
-                  Spacer(),
+                  Spacer(
+                    flex: 2,
+                  ),
                 ],
               ))
             ],

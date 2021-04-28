@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:monoholy/model/utility.dart';
+import 'package:monoholy/pages/loby.dart';
 
-class JoinToParty extends StatefulWidget {
-  JoinToParty({Key key}) : super(key: key);
+class Name extends StatefulWidget {
+  Name({Key key}) : super(key: key);
 
   @override
-  _JoinToPartyState createState() => _JoinToPartyState();
+  _NameState createState() => _NameState();
 }
 
-class _JoinToPartyState extends State<JoinToParty> {
+class _NameState extends State<Name> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,11 +39,7 @@ class _JoinToPartyState extends State<JoinToParty> {
                   child: Column(
                 children: [
                   Spacer(),
-                  SizedBox(
-                    width: 256,
-                    child: Image.asset("images/door_1.png"),
-                  ),
-                  Text("Enter Party Code",
+                  Text("Type your name:",
                       style: TextStyle(
                           color: Color(0xaaffffff),
                           fontSize: 24,
@@ -49,8 +47,14 @@ class _JoinToPartyState extends State<JoinToParty> {
                   SizedBox(
                     width: 256,
                     child: TextField(
-                      keyboardType: TextInputType.number,
-                      maxLength: 4,
+                      textInputAction: TextInputAction.done,
+                      onSubmitted: (name) => {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    LobyScreen(name, Figure.dog)))
+                      },
                       style: TextStyle(
                         color: Color(0xffffffff),
                         fontFamily: 'FredokaOne',
@@ -58,7 +62,7 @@ class _JoinToPartyState extends State<JoinToParty> {
                       ),
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
-                          hintText: "1234",
+                          hintText: "name",
                           hintStyle: TextStyle(
                               color: Color(0x99ffffff),
                               fontFamily: 'FredokaOne'),
@@ -77,9 +81,7 @@ class _JoinToPartyState extends State<JoinToParty> {
                           )),
                     ),
                   ),
-                  Spacer(
-                    flex: 2,
-                  ),
+                  Spacer(),
                 ],
               ))
             ],
