@@ -10,10 +10,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'MonoHoly',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      title: 'Monopoly',
+      theme:
+          ThemeData(primaryColor: Color(0xff3B296D), fontFamily: 'FredokaOne'),
       home: LoginScreen(),
     );
   }
