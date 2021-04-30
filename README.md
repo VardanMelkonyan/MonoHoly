@@ -1,4 +1,4 @@
-# monoholy
+# monopoly
 
 Flutter project for Monoholy game
 
