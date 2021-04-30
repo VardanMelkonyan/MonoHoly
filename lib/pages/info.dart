@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:monoholy/model/player.dart';
+import 'package:monoholy/model/property_model.dart';
 import 'package:monoholy/model/utility.dart';
 import 'package:monoholy/pages/properties.dart';
 import 'package:monoholy/pages/rules.dart';
@@ -6,6 +8,7 @@ import 'package:monoholy/pages/trade.dart';
 import 'package:monoholy/widgets/action_button.dart';
 import 'package:monoholy/widgets/auction_dialog.dart';
 import 'package:monoholy/widgets/buy_or_not_alert.dart';
+import 'package:monoholy/widgets/trade_player_dialog.dart';
 
 class InfoScreen extends StatefulWidget {
   final String name;
@@ -21,6 +24,22 @@ class _InfoScreenState extends State<InfoScreen> {
   bool isPlayersTurn = true;
   List<int> pIds = [1, 3, 8, 11, 27, 25];
 
+  List<Player> players = [
+    Player(name: "Vle", figure: Figure.car, money: 1400, properties: [
+      PropertyModel(id: 15, title: "Pennsylvania Railroad"),
+      PropertyModel(id: 16, title: "St. James Place"),
+      PropertyModel(id: 39, title: "Boardwalk"),
+    ]),
+    Player(name: "Bghdo", figure: Figure.hat, money: 1680, properties: [
+      PropertyModel(id: 24, title: "Illinois Avenue"),
+      PropertyModel(id: 28, title: "Water Works"),
+      PropertyModel(id: 29, title: "Marvin Gardens"),
+    ]),
+    Player(name: "Azgush", figure: Figure.shoe, money: 870, properties: [
+      PropertyModel(id: 6, title: "Oriental Avenue"),
+    ])
+  ];
+
   AlertDialog _buyOrNotBuilder(BuildContext context) {
     return openDialog(context, 1, () {
       print("yes");
@@ -33,6 +52,13 @@ class _InfoScreenState extends State<InfoScreen> {
     return auctionDialog(context, 27, () {
       print("Hello mazafaka");
     });
+  }
+
+  AlertDialog _tradeChoosePlayer(BuildContext context) {
+    return tradePlayer(context, (Player player) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => TradeScreen(player)));
+    }, players);
   }
 
   @override
@@ -191,11 +217,9 @@ class _InfoScreenState extends State<InfoScreen> {
                                   ),
                                   onPressed: isPlayersTurn
                                       ? () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      TradeScreen()));
+                                          showDialog(
+                                              context: context,
+                                              builder: _tradeChoosePlayer);
                                         }
                                       : null,
                                 ),
