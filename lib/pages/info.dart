@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:monoholy/model/utility.dart';
+import 'package:monoholy/pages/properties.dart';
 import 'package:monoholy/pages/rules.dart';
+import 'package:monoholy/pages/trade.dart';
 import 'package:monoholy/widgets/action_button.dart';
+import 'package:monoholy/widgets/auction_dialog.dart';
+import 'package:monoholy/widgets/buy_or_not_alert.dart';
 
 class InfoScreen extends StatefulWidget {
   final String name;
@@ -15,10 +19,26 @@ class InfoScreen extends StatefulWidget {
 
 class _InfoScreenState extends State<InfoScreen> {
   bool isPlayersTurn = true;
+  List<int> pIds = [1, 3, 8, 11, 27, 25];
+
+  AlertDialog _buyOrNotBuilder(BuildContext context) {
+    return openDialog(context, 1, () {
+      print("yes");
+    }, () {
+      print("no");
+    });
+  }
+
+  AlertDialog _auction(BuildContext context) {
+    return auctionDialog(context, 27, () {
+      print("Hello mazafaka");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xff3B296D),
+        backgroundColor: merColor,
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 23, vertical: 20),
@@ -34,7 +54,7 @@ class _InfoScreenState extends State<InfoScreen> {
                           MaterialPageRoute(
                               builder: (context) => RulesScreen()));
                     },
-                    icon: Image.asset('assets/book.png'),
+                    icon: Image.asset('assets/icons/book.png'),
                   ),
                 ),
                 Column(
@@ -71,7 +91,7 @@ class _InfoScreenState extends State<InfoScreen> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Text(
-                                  "12",
+                                  "${pIds.length}",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 24),
                                 ),
@@ -101,7 +121,7 @@ class _InfoScreenState extends State<InfoScreen> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 ActionButton(
-                                  imagePath: 'assets/dice.png',
+                                  imagePath: 'assets/icons/dice.png',
                                   title: Text(
                                     "Roll",
                                     style: TextStyle(
@@ -111,12 +131,14 @@ class _InfoScreenState extends State<InfoScreen> {
                                   ),
                                   onPressed: isPlayersTurn
                                       ? () {
-                                          print("jgkhvj");
+                                          showDialog(
+                                              context: context,
+                                              builder: _buyOrNotBuilder);
                                         }
                                       : null,
                                 ),
                                 ActionButton(
-                                  imagePath: 'assets/documents.png',
+                                  imagePath: 'assets/icons/documents.png',
                                   title: Text(
                                     "Properties",
                                     style: TextStyle(
@@ -124,7 +146,16 @@ class _InfoScreenState extends State<InfoScreen> {
                                       fontSize: 22,
                                     ),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => PropertiesScreen(
+                                          pIds: pIds,
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 ),
                               ],
                             ),
@@ -133,7 +164,7 @@ class _InfoScreenState extends State<InfoScreen> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 ActionButton(
-                                  imagePath: 'assets/jail.png',
+                                  imagePath: 'assets/icons/jail.png',
                                   title: Text(
                                     "Get out",
                                     style: TextStyle(
@@ -141,10 +172,16 @@ class _InfoScreenState extends State<InfoScreen> {
                                       fontSize: 24,
                                     ),
                                   ),
-                                  onPressed: isPlayersTurn ? () {} : null,
+                                  onPressed: isPlayersTurn
+                                      ? () {
+                                          showDialog(
+                                              context: context,
+                                              builder: _auction);
+                                        }
+                                      : null,
                                 ),
                                 ActionButton(
-                                  imagePath: 'assets/transfer.png',
+                                  imagePath: 'assets/icons/transfer.png',
                                   title: Text(
                                     "Trade",
                                     style: TextStyle(
@@ -152,7 +189,15 @@ class _InfoScreenState extends State<InfoScreen> {
                                       fontSize: 24,
                                     ),
                                   ),
-                                  onPressed: isPlayersTurn ? () {} : null,
+                                  onPressed: isPlayersTurn
+                                      ? () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      TradeScreen()));
+                                        }
+                                      : null,
                                 ),
                               ],
                             ),

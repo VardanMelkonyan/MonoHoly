@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monoholy/model/utility.dart';
 import 'pages/login.dart';
 
 void main() {
@@ -11,8 +12,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Monopoly',
-      theme:
-          ThemeData(primaryColor: Color(0xff3B296D), fontFamily: 'FredokaOne'),
+      theme: ThemeData(
+        primaryColor: merColor,
+        canvasColor: merColor,
+        fontFamily: 'FredokaOne',
+      ),
       home: LoginScreen(),
     );
   }

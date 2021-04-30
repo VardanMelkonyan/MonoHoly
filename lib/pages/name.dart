@@ -16,7 +16,7 @@ class _NameState extends State<Name> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          color: Color(0xff3B296D),
+          color: merColor,
         ),
         child: SafeArea(
           child: Stack(
@@ -39,11 +39,13 @@ class _NameState extends State<Name> {
                   child: Column(
                 children: [
                   Spacer(),
-                  Text("Type your name:",
-                      style: TextStyle(
-                          color: Color(0xaaffffff),
-                          fontSize: 24,
-                          fontFamily: 'FredokaOne')),
+                  Text(
+                    "Type your name:",
+                    style: TextStyle(
+                        color: Color(0xaaffffff),
+                        fontSize: 24,
+                        fontFamily: 'FredokaOne'),
+                  ),
                   SizedBox(
                     width: 256,
                     child: TextField(
@@ -62,23 +64,22 @@ class _NameState extends State<Name> {
                       ),
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
-                          hintText: "name",
-                          hintStyle: TextStyle(
-                              color: Color(0x99ffffff),
-                              fontFamily: 'FredokaOne'),
-                          enabledBorder: UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.white, width: 3)),
-                          border: UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.white, width: 3)),
-                          disabledBorder: UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.white, width: 3)),
-                          focusedBorder: UnderlineInputBorder(
+                        hintText: "name",
+                        hintStyle: TextStyle(
+                            color: Color(0x99ffffff), fontFamily: 'FredokaOne'),
+                        enabledBorder: UnderlineInputBorder(
                             borderSide:
-                                BorderSide(color: Colors.white, width: 3),
-                          )),
+                                BorderSide(color: Colors.white, width: 3)),
+                        border: UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.white, width: 3)),
+                        disabledBorder: UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.white, width: 3)),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white, width: 3),
+                        ),
+                      ),
                     ),
                   ),
                   Spacer(),

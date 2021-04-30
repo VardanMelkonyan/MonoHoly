@@ -27,14 +27,15 @@ class _RulesScreenState extends State<RulesScreen> {
         ));
         widgets.add(Text(
           key,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 24, color: Colors.white),
         ));
         widgets.add(SizedBox(
           height: 10,
         ));
         widgets.add(Text(
           value,
-          style: TextStyle(fontSize: 18),
+          style: TextStyle(fontSize: 18, color: Colors.white),
         ));
       });
       widgets.add(SizedBox(

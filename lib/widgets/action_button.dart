@@ -4,17 +4,27 @@ class ActionButton extends StatelessWidget {
   final String imagePath;
   final Text title;
   final Function onPressed;
+  final double boxSize;
+  final double iconSize;
+  final double paddingSize;
 
-  ActionButton({this.title, this.imagePath, this.onPressed});
+  ActionButton(
+      {this.title,
+      this.imagePath,
+      this.onPressed,
+      this.boxSize,
+      this.iconSize,
+      this.paddingSize});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(11),
+      padding: EdgeInsets.all(paddingSize ?? 11.0),
       child: SizedBox(
-        width: 151,
-        height: 151,
+        width: boxSize ?? 151,
+        height: boxSize ?? 151,
         child: RaisedButton(
+          padding: EdgeInsets.zero,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
           color: Colors.white,
@@ -25,7 +35,8 @@ class ActionButton extends StatelessWidget {
               child: Column(
                 children: [
                   Spacer(),
-                  SizedBox(height: 80, child: Image.asset(imagePath)),
+                  SizedBox(
+                      height: iconSize ?? 80, child: Image.asset(imagePath)),
                   Spacer(),
                   title,
                   Spacer(),

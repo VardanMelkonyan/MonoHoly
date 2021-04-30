@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:monoholy/model/utility.dart';
 import 'package:monoholy/pages/name.dart';
 
 class JoinToParty extends StatefulWidget {
@@ -15,7 +16,7 @@ class _JoinToPartyState extends State<JoinToParty> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          color: Color(0xff3B296D),
+          color: merColor,
         ),
         child: SafeArea(
           child: Stack(

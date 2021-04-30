@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monoholy/model/utility.dart';
 import 'package:monoholy/pages/rules.dart';
 import 'package:monoholy/widgets/just_button.dart';
 import 'name.dart';
@@ -12,7 +13,7 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
         body: Container(
       decoration: BoxDecoration(
-        color: Color(0xff3B296D),
+        color: merColor,
       ),
       child: Stack(
         children: [
