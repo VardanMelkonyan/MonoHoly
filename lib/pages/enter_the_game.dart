@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:monoholy/model/utility.dart';
 import 'package:monoholy/pages/name.dart';
+import 'package:monoholy/widgets/just_button.dart';
 
 class JoinToParty extends StatefulWidget {
   JoinToParty({Key key}) : super(key: key);
@@ -11,6 +12,13 @@ class JoinToParty extends StatefulWidget {
 }
 
 class _JoinToPartyState extends State<JoinToParty> {
+  String number;
+
+  void _submit() {
+    //TODO: do shit
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Name()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,10 +60,11 @@ class _JoinToPartyState extends State<JoinToParty> {
                     width: 256,
                     child: TextField(
                       textInputAction: TextInputAction.go,
+                      onChanged: (code) {
+                        number = code;
+                      },
                       onSubmitted: (code) {
-                        //TODO: Send request to server in order to connect
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Name()));
+                        _submit();
                       },
                       keyboardType: TextInputType.number,
                       maxLength: 4,
@@ -84,6 +93,14 @@ class _JoinToPartyState extends State<JoinToParty> {
                                 BorderSide(color: Colors.white, width: 3),
                           )),
                     ),
+                  ),
+                  JustButton(
+                    text: Text(
+                      "Connect",
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                    color: Colors.redAccent,
+                    onPressed: _submit,
                   ),
                   Spacer(
                     flex: 2,

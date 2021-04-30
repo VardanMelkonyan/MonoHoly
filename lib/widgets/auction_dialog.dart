@@ -20,7 +20,6 @@ AlertDialog auctionDialog(BuildContext context, int pId, Function onSubmit) {
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: SizedBox(
-            height: 504,
             child: Column(
               children: [
                 Image.asset('assets/properties/$pId.jpg'),
