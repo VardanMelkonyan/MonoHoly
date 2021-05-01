@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monoholy/model/utility.dart';
 import 'package:monoholy/pages/info.dart';
-import 'package:monoholy/pages/login.dart';
 import 'package:monoholy/widgets/just_button.dart';
 
 class LobyScreen extends StatefulWidget {
