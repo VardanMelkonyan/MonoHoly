@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:monoholy/model/offer.dart';
 import 'package:monoholy/model/player.dart';
 import 'package:monoholy/model/property_model.dart';
 import 'package:monoholy/model/utility.dart';
 import 'package:monoholy/widgets/dropDown_button.dart';
 import 'package:monoholy/widgets/just_button.dart';
 import 'package:monoholy/widgets/money_slider.dart';
+import 'package:monoholy/widgets/trade_offer_dialog.dart';
 
 class TradeScreen extends StatefulWidget {
   final Player player;
@@ -34,6 +36,29 @@ class _TradeScreenState extends State<TradeScreen> {
     otherProperties = widget.player.properties.map((e) => e).toList();
     otherProperties.insert(0, PropertyModel(title: "No Property", id: 0));
     otherPlayerProperty = widget.player.properties[0];
+  }
+
+  AlertDialog _tradeOfferDialog(BuildContext context) {
+    return tradeOfferDialog(
+      context,
+      Offer(
+        offeredProperty: otherPlayerProperty,
+        wantedProperty: myProperty,
+        wantedMoney: _howMuchIWant.toInt(),
+        offeredMoney: _myMoneyOffer.toInt(),
+        receiver: widget.player,
+        giver: Player(
+          name: "Hamazasp",
+          figure: Figure.dog,
+          money: 1500,
+        ),
+      ),
+      () {
+        Navigator.pop(context);
+
+        /// todo: Change functionality
+      },
+    );
   }
 
   @override
@@ -90,8 +115,7 @@ class _TradeScreenState extends State<TradeScreen> {
                     textAlign: TextAlign.end,
                   ),
                 ),
-                SizedBox(
-                  width: 240,
+                Expanded(
                   child: MoneySlider(
                     value: _myMoneyOffer,
                     min: 0,
@@ -145,8 +169,7 @@ class _TradeScreenState extends State<TradeScreen> {
                     textAlign: TextAlign.end,
                   ),
                 ),
-                SizedBox(
-                  width: 240,
+                Expanded(
                   child: MoneySlider(
                     value: _howMuchIWant,
                     min: 0,
@@ -164,7 +187,9 @@ class _TradeScreenState extends State<TradeScreen> {
             JustButton(
               title: "Send",
               color: Colors.green,
-              onPressed: () {},
+              onPressed: () {
+                showDialog(context: context, builder: _tradeOfferDialog);
+              },
             ),
             Spacer(flex: 3),
           ],
