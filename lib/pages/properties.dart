@@ -31,9 +31,11 @@ class _PropertiesScreenState extends State<PropertiesScreen> {
       appBar: AppBar(title: Text("Propeties")),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(20),
-            child: Wrap(children: properties),
+          child: Center(
+            child: Padding(
+              padding: EdgeInsets.all(20),
+              child: Wrap(children: properties),
+            ),
           ),
         ),
       ),

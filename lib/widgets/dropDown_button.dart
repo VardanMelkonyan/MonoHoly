@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:monoholy/model/property_model.dart';
 
-class DropButton extends StatefulWidget {
-  PropertyModel value;
-  List<PropertyModel> items;
+class DropButton<T> extends StatefulWidget {
+  T value;
+  List<T> items;
   Function onChanged;
 
   DropButton({this.value, this.items, this.onChanged});
 
   @override
-  _DropButtonState createState() => _DropButtonState();
+  _DropButtonState createState() => _DropButtonState<T>();
 }
 
-class _DropButtonState extends State<DropButton> {
-  List<PropertyModel> propertyNames;
+class _DropButtonState<T> extends State<DropButton> {
+  List<T> propertyNames;
 
   @override
   void initState() {
@@ -22,7 +22,7 @@ class _DropButtonState extends State<DropButton> {
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButton<PropertyModel>(
+    return DropdownButton<T>(
       value: widget.value,
       icon: Icon(
         Icons.arrow_downward,
@@ -35,12 +35,12 @@ class _DropButtonState extends State<DropButton> {
         color: Colors.white,
       ),
       onChanged: widget.onChanged,
-      items: propertyNames.map<DropdownMenuItem<PropertyModel>>(
-        (PropertyModel value) {
-          return DropdownMenuItem<PropertyModel>(
-            value: value,
+      items: propertyNames.map<DropdownMenuItem<T>>(
+        (T v) {
+          return DropdownMenuItem<T>(
+            value: v,
             child: Text(
-              value.title,
+              v.toString(),
             ),
           );
         },

@@ -13,10 +13,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Monopoly',
       theme: ThemeData(
+        appBarTheme: AppBarTheme(brightness: Brightness.dark),
         primaryColor: merColor,
         canvasColor: merColor,
         fontFamily: 'FredokaOne',
       ),
+      debugShowCheckedModeBanner: false,
       home: LoginScreen(),
     );
   }

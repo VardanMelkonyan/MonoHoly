@@ -7,8 +7,7 @@ class Property extends StatelessWidget {
   AlertDialog _openDialog(BuildContext context) {
     return AlertDialog(
       backgroundColor: Color(0x00000000),
-      content: SizedBox(
-        height: 424,
+      content: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -66,6 +65,7 @@ class Property extends StatelessWidget {
   }
 
   Property(this.imageID);
+
   @override
   Widget build(BuildContext context) {
     return TextButton(
